@@ -1,0 +1,22 @@
+{
+  "name": "netflix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prosted/netflix.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Prosted/netflix/issues"
+  },
+  "homepage": "https://github.com/Prosted/netflix#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
