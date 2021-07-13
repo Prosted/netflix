@@ -1,3 +1,8 @@
 mixin printVideos(video)
+    a(href=`/videos/${video.id}`)=video.title
     ul 
-        li #{video}
+        li=video.createdAt
+        li=video.views
+        li=video.rating + "/ 5"
+        each hashtag in video.hashtags
+            span=hashtag

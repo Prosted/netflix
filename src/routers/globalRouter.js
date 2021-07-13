@@ -1,9 +1,9 @@
 import express from "express";
-import { home, upload } from "../controllers/videoController";
+import { home, search } from "../controllers/videoController";
 
 const globalRouter = express.Router();
 
 globalRouter.get("/", home);
-globalRouter.get("/upload", upload);
+globalRouter.get("/search", search);
 
 export default globalRouter;
