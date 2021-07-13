@@ -1,4 +1,9 @@
 extends base
 
 block content 
-    h4 watch video
+    h4 watch #{video.title}
+    ul 
+        li
+            a(href=`${video.id}/edit`) Edit Video
+        li
+            a(href=`${video.id}/delete`) Delete Video  

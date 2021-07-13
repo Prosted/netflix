@@ -4,5 +4,6 @@ mixin printVideos(video)
         li=video.createdAt
         li=video.views
         li=video.rating + "/ 5"
+        li=video.createdAt
         each hashtag in video.hashtags
             span=hashtag
