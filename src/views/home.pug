@@ -1,6 +1,7 @@
-doctype html
-html 
-    head 
-        title=pageTitle
-    body
-        h1 #{pageTitle}
+extends base
+include ./mixins/video
+
+block content 
+    h4 trending videos
+    each video in videos
+        +printVideos(video)

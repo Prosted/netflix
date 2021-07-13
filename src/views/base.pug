@@ -1,0 +1,10 @@
+doctype html
+html 
+    head 
+        link(rel="stylesheet" href="https://unpkg.com/mvp.css")
+        title=pageTitle
+    body
+        main
+            h1 #{pageTitle}
+            block content 
+        include ./partials/footer

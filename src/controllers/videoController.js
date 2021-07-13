@@ -1,6 +1,9 @@
+const videos = [1,2,3,4,5,6,7];
+
+
 //globalRouter
 export const home = (req, res) => {
-    res.render("home", {pageTitle : "home"});
+    res.render("home", {pageTitle : "home", videos});
 } 
 
 export const upload = (req, res) =>{
