@@ -1,74 +1,47 @@
-const videos = [
-{
-    title : "First",
-    description : "first",
-    createdAt : "3 minutes ago",
-    views : 50,
-    rating : 4.1,
-    hashtags : ["#fisrt", "#firstVideo"],
-    id:1,
-},
-{
-    title : "Second",
-    description : "second",
-    createdAt : "3 minutes ago",
-    views : 50,
-    rating : 4.1,
-    hashtags : ["#second", "#secondVideo"],
-    id:2,
-},
-{
-    title : "Third",
-    description : "third",
-    createdAt : "3 minutes ago",
-    views : 50,
-    rating : 4.1,
-    hashtags : ["#third", "#ThirdVideo"],
-    id:3,
-},
-];
-
+import Video from "../models/Video";
 
 //globalRouter
-export const home = (req, res) => {
-    res.render("home", {pageTitle : "home", videos});
+export const home = async (req, res) => {
+    try{
+        const videos = await Video.find({}).sort({"createdAt":-1});
+        return res.render("home", {pageTitle : "home", videos});
+    }catch(error){
+        res.render("server-error", {pageTitle:"404 Error"});
+    }
 } 
 
 export const search = (req, res) => {
     res.render("search", {pageTitle:"search"});
 }
 
-
 //videoRouter
-export const watch = (req, res) => {
+export const watch = async (req, res) => {
     const {id} = req.params;
-    res.render("watch", {pageTitle:"watch", video : videos[id-1]});
+    const video = await Video.findById(id);
+    console.log(video);
+    res.render("watch", {pageTitle:"watch", video});
 }
 
 export const getUpload = (req, res) =>{
     res.render("upload", {pageTitle:"upload"});
 }
 
-export const postUpload = (req, res) =>{
+export const postUpload = async (req, res) =>{
     const {title, description, hashtags} = req.body;
-    const newVideo = {
+    await Video.create({
         title,
         description,
-        hashtags,
-        views : 0,
-        rating : 0,
-        id : videos.length+1,
-        createdAt : "1 minutes ago",
-    }
-    videos.push(newVideo);
-    res.redirect(`/videos/${newVideo.id}`);   
+        hashtags : hashtags.split(",").map(word => word.charAt(0) == "#" ? word : `#${word}`),
+    });
+    res.redirect('/');   
 }
 
 export const edit = (req, res) => {
     const {id}=req.params;
-    res.render("editVideo", {pageTitle:"editVideo", video: videos[id-1]});
+    res.render("editVideo", {pageTitle:"editVideo"});
 }
-
-export const remove = (req, res) => {
+export const remove = async (req, res) => {
+    const {id} = req.params;
+    await Video.deleteOne({ _id : id });  
     res.redirect("/");
 }

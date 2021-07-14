@@ -2,7 +2,7 @@ extends base
 
 block content 
     form(action="", method="POST")
-        input(name="title", type="text", placeholder="Title")
-        input(name="description", type="text", placeholder="Description")
-        input(name="hashtags", type="text", placeholder="Hashtags, separated comma")
+        input(name="title", type="text", placeholder="Title", minlength="1", maxlength="20", required)
+        input(name="description", type="text", placeholder="Description", minlength="1", maxlength="20", required)
+        input(name="hashtags", type="text", placeholder="Hashtags, separated comma", minlength="1", maxlength="20", required)
         input(type="submit", value="Save") 
